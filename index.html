@@ -6,90 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-
-    <title>testing</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
-    <style>
-      /* div {border: 1px solid #efefef} */
+    <link rel="stylesheet" href="http://www.globalspec.com/css/bundle/main-bundle-b59c2bd14f3355424a1b.min.css">
 
-      @media only screen and (max-width: 500px) {
-          .first {
-            order: 2;
-          }
-          .second {
-            order: 1;
-          }
-        }
-    </style>
+
+  <style>
+
+  label               {padding: 10px}
+  h6                  {padding-bottom: 15px}
+  input               {padding: 10px}
+  .form-check-input   {margin-top: 0}
+  .pref               {padding-bottom: 10px}
+
+  </style>
+
+    <title>Consent!</title>
   </head>
   <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <img src="http://via.placeholder.com/1140x200" class="img-fluid">
+
+      <div class="container">
+          <div class="row">
+            <div class="col-lg">
+                <img src="http://via.placeholder.com/1140x100" class="img-fluid" >
+                <br><br>
+
+                <p>[first name], <br><br>
+                    Thank you for taking time to update your communication preferences in anticipation of the GDPR. <br>
+                    Please take a moment to update your contact and email preferences below:
+                </p>
+
+
+                <form>
+                  
+                    <fieldset>
+                      <h6>CONTACT PREFERENCES</h6>
+                    
+                    
+                      <div class="pref">
+                        Notify me about educational webinars and white papers? <i class="fas fa-question-circle"></i>
+                        
+                          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="pop-up copy goes here">
+                            Tooltip on top
+                          </button>
+
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                    
+                      <div class="pref">
+                        Companies affiliated with IEEE GlobalSpec can contact me when I express interest in their product or service?
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                      <div class="pref">
+                        Notify me of special promotions and announcements from IEEE GlobalSpec?
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                      <div class="pref">
+                        Include me in third-party email campaigns that are relevant to me.
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                    </fieldset>
+
+
+                    <fieldset>
+                      <h6>CURRENT SUBSCRIPTIONS</h6>
+                      <p>You are currently subscribed to the publication(s) below. Please indicate if you would like to continue your subscription:</p>
+                    
+                    
+                      <div class="pref">
+                        NL title “N” (# issues per year)
+                        <br>
+                        <em>(list all newsletter and product alert subscriptions here, in the below format)</em>
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                    
+                      <div class="pref">
+                        Product Alert Subscription “N” (delivered weekly)
+                        <br>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
+                        </label>
+                    
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" value="No">&nbsp;No
+                        </label>
+                      </div>
+                    
+                    </fieldset>
+
+
+                    <fieldset>
+                      <h6>PROFILE INFORMATION</h6>
+                      <p>Please review your profile information and edit as necessary.</p>
+                      <p>[Insert profile fields]</p>
+                
+                    
+                    </fieldset>
+
+                 
+                    <button type="submit" class="btn btn-primary btn-lg">Submit &amp; Save</button>
+                  </form>
+
             </div>
 
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-              <img src="http://via.placeholder.com/570x200" class="img-fluid">
-              
-          </div>
-          <div class="col-sm-6"><h2>Get the PV Training <br>
-            and Education You Need <br>
-            ...in Niagara Falls, NY</h2></div>
-
-      </div>
-      <div class="row">
-        <div class="col-sm-6 first">
-          <div class="row">
-              <div class="col-sm-12"> <p>Platinum Champion Sponsor</p>
-              </div>
-
-          </div>
-          <div class="row">
-            
-            <div class="col-sm-3">logo-1</div>
-            <div class="col-sm-3">logo-2</div>
-            <div class="col-sm-3">logo-3</div>
-            <div class="col-sm-3">logo-4</div>
-          </div>
-        </div>
-        <div class="col-sm-6 second">
-          <h4>Earn Credits Toward Your
-            Certification or Recertification</h4>
-            <p>Make plans now to attend our Continuing Education Conference
-              at the <strong>The Conference and Event Center Niagara Falls</strong> in the
-              spring. This is the ideal opportunity for NABCEP Certified PV
-              Installation Professionals and PV Technical Sales Professionals
-              to obtain all of the continuing education credits needed for
-              recertification. And non-certified professionals can earn up to
-              18 hours toward certification eligibility.</p>
-
-              <h5>The conference will include:</h5>
-
-            <ul>
-              <li>Three days of in-depth technical training from the most respected experts in the industry</li>
-              <li>The latest product training from select manufacturers</li>
-              <li>Full day PV and the NEC course options</li>
-
-            </ul>
-
-              <p>Join us in Niagara Falls, NY for three intensive days of PV training, education and networking. To find out more, or register for the conference, visit:</p>
-
-              <a href="http://www.nabcep.org/2018-continuing-education-conference" type="button" class="btn btn-warning btn-block" target="_blank">www.nabcep.org/2018-continuing-education-conference</a>
-
-        </div>
-
-      </div>
-    </div>
+          </div > <!--  / row -->
+        </div> <!--  / container -->
+    
+    <br>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
+    <!-- font awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+ 
   </body>
 </html>

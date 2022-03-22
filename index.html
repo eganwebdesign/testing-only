@@ -1,168 +1,179 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Starter Stuff</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/starter-template/">
+
+    
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- MDB  https://mdbootstrap.com -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css" rel="stylesheet"/>
 
 
-    <link rel="stylesheet" href="http://www.globalspec.com/css/bundle/main-bundle-b59c2bd14f3355424a1b.min.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
 
-  <style>
+    <!-- material -->
 
-  label               {padding: 10px}
-  h6                  {padding-bottom: 15px}
-  input               {padding: 10px}
-  .form-check-input   {margin-top: 0}
-  .pref               {padding-bottom: 10px}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  </style>
 
-    <title>Consent!</title>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .btn-counter {background-color: #646464; color: #fff;}
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
   </head>
   <body>
-
-      <div class="container">
-          <div class="row">
-            <div class="col-lg">
-                <img src="http://via.placeholder.com/1140x100" class="img-fluid" >
-                <br><br>
-
-                <p>[first name], <br><br>
-                    Thank you for taking time to update your communication preferences in anticipation of the GDPR. <br>
-                    Please take a moment to update your contact and email preferences below:
-                </p>
-
-
-                <form>
-                  
-                    <fieldset>
-                      <h6>CONTACT PREFERENCES</h6>
-                    
-                    
-                      <div class="pref">
-                        Notify me about educational webinars and white papers? <i class="fas fa-question-circle"></i>
-                        
-                          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="pop-up copy goes here">
-                            Tooltip on top
-                          </button>
-
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                    
-                      <div class="pref">
-                        Companies affiliated with IEEE GlobalSpec can contact me when I express interest in their product or service?
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                      <div class="pref">
-                        Notify me of special promotions and announcements from IEEE GlobalSpec?
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                      <div class="pref">
-                        Include me in third-party email campaigns that are relevant to me.
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                    </fieldset>
-
-
-                    <fieldset>
-                      <h6>CURRENT SUBSCRIPTIONS</h6>
-                      <p>You are currently subscribed to the publication(s) below. Please indicate if you would like to continue your subscription:</p>
-                    
-                    
-                      <div class="pref">
-                        NL title “N” (# issues per year)
-                        <br>
-                        <em>(list all newsletter and product alert subscriptions here, in the below format)</em>
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                    
-                      <div class="pref">
-                        Product Alert Subscription “N” (delivered weekly)
-                        <br>
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="Yes" checked>&nbsp;Yes
-                        </label>
-                    
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" value="No">&nbsp;No
-                        </label>
-                      </div>
-                    
-                    </fieldset>
-
-
-                    <fieldset>
-                      <h6>PROFILE INFORMATION</h6>
-                      <p>Please review your profile information and edit as necessary.</p>
-                      <p>[Insert profile fields]</p>
-                
-                    
-                    </fieldset>
-
-                 
-                    <button type="submit" class="btn btn-primary btn-lg">Submit &amp; Save</button>
-                  </form>
-
-            </div>
-
-          </div > <!--  / row -->
-        </div> <!--  / container -->
     
-    <br>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- https://mdbootstrap.com/docs/standard/forms/input-fields -->
+    
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+
+      <span class="fs-4">Form Fields</span>
+    
+  </header>
+
+  <main>
    
-    <!-- font awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
- 
+    <div class="row">
+      
+      <div >
+
+
+        <!-- MDB -->
+        <div class="form-outline">
+          <input type="text" id="typeText" class="form-control" />
+          <label class="form-label" for="typeText">Text input</label>
+        </div>
+
+        <br/>
+
+        <div class="form-outline">
+          <input type="email" id="typeEmail" class="form-control" />
+          <label class="form-label" for="typeEmail">Email input</label>
+        </div>
+
+        <br/>
+
+        <div class="form-outline">
+          <input type="tel" id="typePhone" class="form-control" />
+          <label class="form-label" for="typePhone">Phone number input</label>
+        </div>
+
+        <br/>
+
+        <div class="form-outline">
+
+          <i class="material-icons trailing"><span class="material-icons">info</span></i>
+          <input type="text" id="form1" class="form-control form-icon-trailing" />
+          <label class="form-label" for="form1">Example label with trailing icon (material icon)</label>
+        </div>
+
+        <br/>
+
+        <div class="form-outline">
+          <i class="fas fa-exclamation-circle trailing"></i>
+          <input type="text" id="form1" class="form-control form-icon-trailing" />
+          <label class="form-label" for="form1">Example label with trailing icon (font awesome)</label>
+        </div>
+
+        <br/>
+
+        <div class="form-outline">
+          <input type="text" id="form14" class="form-control" />
+          <label class="form-label" for="form14">Example text</label>
+          <div class="form-helper">Helper text here...</div>
+        </div>
+        
+        <br/>
+        <br/>
+
+        <div class="form-outline">
+          <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+          <label class="form-label" for="textAreaExample">Message</label>
+        </div>
+
+        <br/>
+        <br/>
+
+
+        <!-- counter -->
+
+        <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+
+          <span class="fs-4">Counter</span>
+        
+        </header>
+
+        <div class="col-md-6 col-sm-6 col-lg-3">
+          
+
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button type="button" class="btn btn-counter"><span class="material-icons">remove</span></button>
+          
+            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10" min="1"
+              max="100" style="border-radius: 0; text-align: center;">
+
+          <button type="button" class="btn btn-counter"><span class="material-icons">add</span></button>
+        </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Created by the Bootstrap team &middot; &copy; 2022
+  </footer>
+</div>
+
+
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <!-- MDB -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js">
+        </script>
+
+        <!-- fa -->
+        <!-- <script src="https://kit.fontawesome.com/a31e23cbed.js" crossorigin="anonymous"></script> -->
+      
   </body>
 </html>

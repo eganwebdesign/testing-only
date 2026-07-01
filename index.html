@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HSA Plus | Strategy Builder</title>
+<title>HSA Plus | Strategy Builder — Current Accounts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -228,6 +228,63 @@
   footer a{ color:var(--ink-soft); text-decoration:none; margin-right:16px; font-weight:600; }
   footer a:hover{ color:var(--red); }
 
+  /* ---------- Current Accounts page ---------- */
+  .notice-bar{
+    background:#FFF4E5; border:1px solid #FBD9A6; color:#8A5A00;
+    border-radius:14px; padding:14px 18px; font-size:14px; font-weight:600;
+    margin:22px 0 26px;
+  }
+  .section-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;
+  }
+  .section-head h3{ font-size:16px; font-weight:700; color:var(--ink); }
+  .btn-add{
+    display:flex; align-items:center; gap:6px;
+    background:transparent; border:1.5px solid var(--red); color:var(--red);
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13px;
+    padding:8px 16px; border-radius:999px; cursor:pointer;
+  }
+  .btn-add:hover{ background:rgba(207,31,57,0.06); }
+
+  .accounts-table{
+    width:100%; border-collapse:separate; border-spacing:0;
+    border:1px solid var(--border); border-radius:16px; overflow:hidden;
+  }
+  .accounts-table th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ink-soft); font-weight:700; padding:14px 18px; background:#FAFDFF;
+    border-bottom:1px solid var(--border);
+  }
+  .accounts-table td{
+    padding:15px 18px; font-size:14px; color:var(--ink); border-bottom:1px solid var(--border);
+    background:#fff;
+  }
+  .accounts-table tr:nth-child(even) td{ background:#FAFDFF; }
+  .accounts-table tr:last-child td{ border-bottom:none; }
+  .accounts-table td.num{ font-variant-numeric: tabular-nums; }
+  .acct-name{ font-weight:700; }
+  .acct-name .tag{
+    display:inline-block; margin-top:4px; font-size:10.5px; font-weight:700;
+    letter-spacing:0.04em; color:#fff; background:var(--red); border-radius:999px;
+    padding:2px 8px; text-transform:uppercase;
+  }
+  .row-actions{ display:flex; gap:10px; }
+  .row-actions button{
+    background:none; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:8px; padding:0; color:var(--ink-soft);
+    transition: background .15s ease, color .15s ease;
+  }
+  .row-actions button svg{ width:16px; height:16px; }
+  .row-actions button.edit:hover{ color:var(--red); background:rgba(207,31,57,0.08); }
+  .row-actions button.delete{ color:#DC2626; }
+  .row-actions button.delete:hover{ color:#B91C1C; background:rgba(220,38,38,0.08); }
+  .total-row td{
+    font-weight:800; background:#FDF2F4 !important; border-top:2px solid var(--border);
+    font-family:'Sora',sans-serif; font-size:14.5px;
+  }
+  .footnote{ font-size:12px; color:var(--ink-soft); margin-top:14px; line-height:1.6; }
+  .footnote sup{ font-weight:700; color:var(--red); }
+
   @media (max-width: 860px){
     .layout{ grid-template-columns:1fr; }
     .persons{ grid-template-columns:1fr; }
@@ -279,19 +336,19 @@
             </linearGradient>
           </defs>
           <circle class="track" cx="28" cy="28" r="24"/>
-          <circle class="fill" cx="28" cy="28" r="24" stroke-dasharray="151" stroke-dashoffset="121"/>
+          <circle class="fill" cx="28" cy="28" r="24" stroke-dasharray="151" stroke-dashoffset="90.6"/>
         </svg>
-        <div class="pct">1/5</div>
+        <div class="pct">2/5</div>
       </div>
       <div class="progress-label">
-        <b>Getting started</b>
-        <span>Step 1 of 5</span>
+        <b>Building your plan</b>
+        <span>Step 2 of 5</span>
       </div>
     </div>
 
     <div class="steps">
-      <div class="step active"><div class="num">1</div> Personal Information</div>
-      <div class="step"><div class="num">2</div> Current Accounts</div>
+      <div class="step done"><div class="num">✓</div> Personal Information</div>
+      <div class="step active"><div class="num">2</div> Current Accounts</div>
       <div class="step"><div class="num">3</div> Current Medical Expenses</div>
       <div class="step"><div class="num">4</div> Goals &amp; Assumptions</div>
       <div class="step"><div class="num">5</div> Action Plan</div>
@@ -300,77 +357,72 @@
 
   <!-- Main -->
   <main class="main-card">
-    <h1>Personal information</h1>
-    <p class="lead">Building a comprehensive HSA investment plan begins with an understanding of your current financial situation and goals. Take a moment to fill in your information below.</p>
+    <h1>Current HSAs</h1>
+    <p class="lead">Your HSA investment account appears below. Please include any other HSAs you want considered in your HSA investment strategy. Use the add, edit, and delete buttons to manage your account information.</p>
 
-    <div class="persons">
+    <div class="notice-bar">Your maximum contribution to your HSA for 2026 is $8,750.</div>
 
-      <!-- Participant -->
-      <div class="person-card">
-        <div class="person-head"><span class="person-dot p1"></span><h3>Participant</h3></div>
-
-        <div class="group-label">Current</div>
-        <div class="field">
-          <label>Name</label>
-          <input type="text" value="John Doe">
-        </div>
-        <div class="field">
-          <label>Gender</label>
-          <select><option>Male</option><option>Female</option></select>
-        </div>
-        <div class="field">
-          <label>Birth date (mm/dd/yyyy)</label>
-          <input type="text" value="05/20/1990">
-        </div>
-        <div class="field">
-          <label>HDHP coverage type</label>
-          <div class="input-row">
-            <select style="flex:1"><option>Family</option><option>Individual</option></select>
-            <div class="info-dot">i</div>
-          </div>
-        </div>
-
-        <div class="group-label">Future</div>
-        <div class="field">
-          <label>Planned retirement age</label>
-          <div class="input-row">
-            <input type="text" value="65" style="flex:1">
-            <div class="info-dot">i</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Spouse -->
-      <div class="person-card">
-        <div class="person-head"><span class="person-dot p2"></span><h3>Spouse</h3></div>
-
-        <div class="group-label">Current</div>
-        <div class="field">
-          <label>Name</label>
-          <input type="text" value="Josephine">
-        </div>
-        <div class="field">
-          <label>Gender</label>
-          <select><option>Female</option><option>Male</option></select>
-        </div>
-        <div class="field">
-          <label>Birth date (mm/dd/yyyy)</label>
-          <input type="text" value="05/20/1990">
-        </div>
-
-        <div class="group-label">Future</div>
-        <div class="field">
-          <label>Planned retirement age</label>
-          <div class="input-row">
-            <input type="text" value="65" style="flex:1">
-            <div class="info-dot">i</div>
-          </div>
-        </div>
-
-        <div class="remove-link">✕ Remove spouse information</div>
-      </div>
-
+    <div class="section-head">
+      <h3>Current HSAs</h3>
+      <button class="btn-add">+ Add account</button>
     </div>
+
+    <table class="accounts-table">
+      <thead>
+        <tr>
+          <th>Account name</th>
+          <th>Balance</th>
+          <th>Annual contribution amount<sup>1</sup></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="acct-name">Master HSA Plan<br><span class="tag">Primary</span></td>
+          <td class="num">$14,935.17</td>
+          <td class="num">$4,000</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td class="acct-name">New Account</td>
+          <td class="num">$40,000.00</td>
+          <td class="num">$0</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="delete" aria-label="Delete" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td class="acct-name">New Account</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="delete" aria-label="Delete" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td class="acct-name">New Account</td>
+          <td class="num">$91,055.00</td>
+          <td class="num">$0</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="delete" aria-label="Delete" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td class="acct-name">New Account</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="delete" aria-label="Delete" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></td>
+        </tr>
+        <tr>
+          <td class="acct-name">New Account</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0</td>
+          <td><div class="row-actions"><button class="edit" aria-label="Edit" title="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button><button class="delete" aria-label="Delete" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></button></div></td>
+        </tr>
+        <tr class="total-row">
+          <td>Total balance</td>
+          <td class="num">$145,990.17</td>
+          <td class="num">$4,000</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="footnote"><sup>1</sup> The annual contribution amount to your HSA should include both employer and employee contributions.</p>
 
     <hr class="divider-line">
 

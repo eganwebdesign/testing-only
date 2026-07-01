@@ -1,834 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wealth Connect - Dashboard</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --wc-navy: #1a2340;
-      --wc-blue: #1565d8;
-      --wc-blue-light: #4a8af4;
-      --wc-accent: #0ea5e9;
-      --wc-bg: #f4f6fa;
-      --wc-white: #ffffff;
-      --wc-text: #1e293b;
-      --wc-muted: #64748b;
-      --wc-border: #e2e8f0;
-      --wc-row-hover: #f0f5ff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSA Plus | Strategy Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F1FAFE;
+    --bg-2: #E4F3FA;
+    --card: #FFFFFF;
+    --ink: #1B1D2A;
+    --ink-soft: #64707A;
+    --border: #DCEDF4;
+    --red: #CF1F39;
+    --red-deep: #9E1729;
+    --success: #16A34A;
+    --grad: linear-gradient(120deg, #241B45 0%, #6E1F4D 55%, #CF1F39 100%);
+    --shadow-sm: 0 1px 2px rgba(27,29,42,0.06);
+    --shadow-md: 0 8px 24px rgba(207,31,57,0.08);
+    --shadow-lg: 0 20px 48px rgba(36,27,69,0.18);
+    --radius: 20px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background: radial-gradient(circle at 15% 0%, var(--bg-2), var(--bg) 55%);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  h1,h2,h3{ font-family:'Sora',system-ui,sans-serif; margin:0; }
 
-    * { box-sizing: border-box; }
+  /* ---------- Top nav ---------- */
+  .topnav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 32px;
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:34px;height:34px;border-radius:10px;
+    background:var(--grad);
+    display:flex;align-items:center;justify-content:center;
+    color:white; font-weight:700; font-family:'Sora',sans-serif; font-size:15px;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand-name{ font-family:'Sora',sans-serif; font-weight:700; font-size:17px; letter-spacing:-0.01em; }
+  .brand-name span{ color:var(--red); }
 
-    h1, h2, h3, h4, h5, h6,
-    .wc-hero-welcome,
-    .wc-panel-title,
-    .wc-analyze-title,
-    .wc-section-title,
-    .wc-logo-text,
-    .wc-summary-label,
-    .wc-footer-title {
-      font-family: 'Montserrat', sans-serif;
-    }
+  .nav-links{ display:flex; gap:6px; }
+  .nav-links a{
+    text-decoration:none; color:var(--ink-soft); font-weight:600; font-size:14px;
+    padding:9px 16px; border-radius:10px; transition: all .15s ease;
+  }
+  .nav-links a:hover{ background:var(--bg-2); color:var(--ink); }
+  .nav-links a.active{ background:var(--ink); color:white; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--wc-bg);
-      color: var(--wc-text);
-      font-size: 14px;
-      overflow-x: hidden;
-    }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .avatar{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,#C4B5FD,#F9A8D4);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700; font-size:13px; color:white; font-family:'Sora',sans-serif;
+  }
 
-    /* ── LOGO & USER ── */
-    .wc-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .08em;
-      /* text-transform: uppercase; */
-      color: var(--wc-navy);
-    }
-    /* .wc-logo-badge {
-      background: var(--wc-navy);
-      border: none;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      letter-spacing: .05em;
-    } */
-    .wc-logo-text { color: #475F7B }
-    .wc-user {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--wc-navy);
-    }
-    .wc-avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--wc-blue);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 13px;
-    }
+  /* ---------- Welcome strip ---------- */
+  .welcome-strip{
+    max-width:1180px; margin:24px auto 0; padding:0 32px;
+  }
+  .welcome-card{
+    background: linear-gradient(120deg, #1B1730 0%, #3B2172 55%, #6D28D9 100%);
+    border-radius: var(--radius);
+    padding:22px 28px;
+    color:white;
+    display:flex; align-items:center; justify-content:space-between;
+    box-shadow: var(--shadow-lg);
+  }
+  .welcome-card h2{ font-size:20px; font-weight:700; }
+  .welcome-card p{ margin:4px 0 0; color:rgba(255,255,255,0.7); font-size:13.5px; }
+  .plan-chip{
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18);
+    padding:8px 14px; border-radius:999px; font-size:12.5px; font-weight:600;
+    letter-spacing:0.02em;
+  }
 
-    /* ── HERO BANNER ── */
-    .wc-hero {
-      background: linear-gradient(30deg, #0c1329 0%, #0c4c62 100%);
-      padding: 2rem 2rem 1.5rem 3.75rem;
-      position: relative;
-      overflow: hidden;
-    }
-    /* .wc-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 80% 50%, rgba(21,101,216,.35) 0%, transparent 65%);
-      pointer-events: none;
-    } */
-    .wc-hero-welcome {
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: .5rem;
-    }
-    .wc-search-wrap {
-      position: relative;
-      /* max-width: 500px; */
-    }
-    .wc-search {
-      border: none;
-      border-radius: 8px;
-      padding: .55rem 3rem .55rem 2.4rem;
-      font-size: 13px;
-      background: rgba(255,255,255);            
-      /* background: rgba(255,255,255,.12); */
-      color: rgba(255,255,255,.5  );
-      width: 100%;
-      outline: none;
-      transition: background .2s;
-    }
-    .wc-search::placeholder { color: #777}
-    .wc-search:focus { background: #fff}
-    /* .wc-search:focus { background: rgba(255,255,255,.2); } */
-    .wc-search-icon {
-      position: absolute;
-      left: .75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #0077c8;
-      /* color: rgba(255,255,255,.55); */
-      font-size: 15px;
-    }
-    .wc-search-actions {
-      position: absolute;
-      right: .5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 4px;
-    }
-    .wc-search-btn {
-      background: rgba(255,255,255,0);
-      border: none;
-      border-radius: 16px;
-      color: rgba(255,255,255,.8);
-      width: 28px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background .15s;
-    }
-    .wc-search-btn:hover { background: rgba(255,255,255,0); }
-    .wc-manage-link {
-      color: #fff;
-      font-size: 16px;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-top: .5rem;
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .wc-manage-link:hover { color: #fff; }
-    .wc-summary {
-      text-align: center;
-      color: #fff;
-    }
-    .wc-summary-label {
-      font-size: 18px;
-      font-weight: 400;
-      /* letter-spacing: .07em; */
-      /* text-transform: uppercase; */
-      color: #fff;
-      margin-bottom: .4rem;
-    }
-    .wc-summary-cols {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: center;
-    }
-    .wc-summary-col small {
-      display: block;
-      font-size: 14px;
-      color: #fff;
-      margin-bottom: 2px;
-      text-align: center;
-    }
-    .wc-summary-col strong {
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1;
-    }
+  /* ---------- Layout ---------- */
+  .layout{
+    max-width:1180px; margin:0 auto; padding:28px 32px 80px;
+    display:grid; grid-template-columns:270px 1fr; gap:24px;
+  }
 
-    /* ── MAIN LAYOUT ── */
-    .wc-main {
-      display: grid;
-      grid-template-columns: 400px 1fr;
-      gap: 1.25rem;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    background:var(--card);
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    padding:22px;
+    box-shadow:var(--shadow-sm);
+    align-self:start;
+  }
+  .sidebar-title{
+    font-size:12px; font-weight:700; letter-spacing:0.08em; color:var(--ink-soft);
+    text-transform:uppercase; margin-bottom:18px;
+  }
+  .progress-ring-wrap{ display:flex; align-items:center; gap:14px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+  .progress-ring{ position:relative; width:56px; height:56px; flex:none; }
+  .progress-ring svg{ transform:rotate(-90deg); }
+  .progress-ring .track{ fill:none; stroke:var(--bg-2); stroke-width:5; }
+  .progress-ring .fill{ fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round; }
+  .progress-ring .pct{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Sora',sans-serif; font-weight:700; font-size:12.5px; color:var(--red-deep);
+  }
+  .progress-label b{ display:block; font-size:14px; font-family:'Sora',sans-serif; }
+  .progress-label span{ font-size:12.5px; color:var(--ink-soft); }
 
-    /* ── SIDEBAR ── */
-    .wc-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+  .steps{ display:flex; flex-direction:column; gap:4px; }
+  .step{
+    display:flex; align-items:center; gap:12px;
+    padding:11px 12px; border-radius:12px; cursor:default;
+    font-size:14px; font-weight:600; color:var(--ink-soft);
+    transition: background .15s ease;
+  }
+  .step .num{
+    width:24px;height:24px;border-radius:50%; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11.5px; font-weight:700; font-family:'Sora',sans-serif;
+    background:var(--bg-2); color:var(--ink-soft);
+  }
+  .step.done .num{ background:#DCFCE7; color:var(--success); }
+  .step.active{ background:linear-gradient(90deg, rgba(124,58,237,0.08), transparent); color:var(--ink); }
+  .step.active .num{ background:var(--grad); color:white; }
+  .step.done{ color:var(--ink); }
 
-    .wc-card {
-      background: var(--wc-white);
-      border: 1px solid var(--wc-border);
-      border-radius: 12px;
-      padding: .5rem 1.2rem;
-      /* padding: 1.1rem 1.2rem; */
+  /* ---------- Main card ---------- */
+  .main-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);
+    padding:34px 38px 28px;
+  }
+  .main-card h1{ font-size:25px; font-weight:700; letter-spacing:-0.01em; }
+  .main-card > .lead{ color:var(--ink-soft); font-size:14.5px; line-height:1.6; margin:8px 0 30px; max-width:640px; }
 
-    }
+  .persons{
+    display:grid; grid-template-columns:1fr 1fr; gap:22px;
+  }
+  .person-card{
+    border:1px solid var(--border); border-radius:16px; padding:22px;
+    background: linear-gradient(180deg, #FAF9FE, #FFFFFF 40%);
+  }
+  .person-head{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .person-dot{ width:9px;height:9px;border-radius:50%; }
+  .person-dot.p1{ background:var(--red); }
+  .person-dot.p2{ background:#241B45; }
+  .person-head h3{ font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); font-weight:700; }
 
-    .wc-analyze-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--wc-text);
-      margin-bottom: .85rem;
-      line-height: 1.4;
-    }
+  .group-label{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.07em; color:var(--ink-soft);
+    font-weight:700; margin:18px 0 10px;
+  }
+  .group-label:first-of-type{ margin-top:0; }
 
-    .wc-analyze-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 1.25rem .75rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background .15s;
-      border: 1px solid transparent;
-      background-color: #fff;
-      box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.2);;
-    }
-    .wc-analyze-item:hover { background: var(--wc-row-hover); }
-    .wc-analyze-item.active {
-      background: #eff6ff;
-      border-color: #bfdbfe;
-    }
-    .wc-analyze-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      /* background: linear-gradient(135deg, #dbeafe, #bfdbfe); */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 14px;
-      color: var(--wc-blue);
-    }
-    .wc-analyze-item.active .wc-analyze-icon {
-      /* background: linear-gradient(135deg, var(--wc-blue), var(--wc-blue-light)); */
-      color: #fff;
-    }
-    .wc-analyze-label {
-      font-size: 16px;
-      font-weight: 500;
-      color: #5275A1;
-      flex: 1;
-      line-height: 1.35;
-      font-family: 'lato', sans-serif;
-    }
-    .wc-analyze-item.active .wc-analyze-label { color: var(--wc-blue); font-weight: 600; }
+  .field{ margin-bottom:14px; }
+  .field label{
+    display:block; font-size:12.5px; font-weight:600; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .input-row{ display:flex; align-items:center; gap:6px; }
+  input[type=text], select{
+    width:100%; padding:11px 13px; border-radius:11px; border:1.5px solid var(--border);
+    font-family:'Inter',sans-serif; font-size:14px; color:var(--ink); background:#fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    appearance:none;
+  }
+  select{
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236E698A' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat; background-position:right 12px center; padding-right:34px;
+  }
+  input:focus, select:focus{
+    outline:none; border-color:var(--red); box-shadow:0 0 0 4px rgba(207,31,57,0.12);
+  }
+  .info-dot{
+    flex:none; width:18px;height:18px;border-radius:50%; background:var(--bg-2); color:var(--ink-soft);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; cursor:default;
+  }
 
-    .wc-show-btn {
-      background: var(--wc-blue);
-      color: #fff;
-      border: none;
-      border-radius: 16px;
-      font-size: 12px;
-      font-weight: 600;
-      padding: .3rem .75rem;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: background .15s;
-    }
-    .wc-show-btn:hover { background: #0f4fc7; }
+  .remove-link{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:6px; font-size:13px; font-weight:600; color:#DC2626;
+    cursor:default;
+  }
 
-    .wc-section-title {
-      font-size: 16px;
-      line-height: 29px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      color: var(--wc-blue);
-      /* text-transform: uppercase; */
-      margin-bottom: .65rem;
-      margin-top: .25rem;
-      border-bottom: 1px solid var(--wc-border);
+  .divider-line{ border:none; border-top:1px solid var(--border); margin:30px 0 24px; }
 
-    }
+  .actions{ display:flex; align-items:center; justify-content:space-between; }
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
+    padding:12px 26px; border-radius:999px; cursor:pointer;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .btn:active{ transform: scale(0.98); }
+  .btn-ghost{
+    background:transparent; color:var(--red); border:1.5px solid var(--red);
+  }
+  .btn-ghost:hover{ background:rgba(207,31,57,0.06); }
+  .btn-primary{
+    background:var(--red); color:white; border:1.5px solid var(--red);
+    box-shadow:0 10px 24px rgba(207,31,57,0.25);
+    display:flex; align-items:center; gap:8px;
+  }
+  .btn-primary:hover{ background:var(--red-deep); border-color:var(--red-deep); box-shadow:0 14px 28px rgba(207,31,57,0.32); }
 
-    .wc-filter-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .5rem 0;
-      /* border-bottom: 1px solid var(--wc-border); */
-    }
-    .wc-filter-item:last-child { border-bottom: none; }
-    .wc-filter-label {
-      font-size: 16px;
-      color: #5275A1;
-      font-family: 'lato', sans-serif;
-    }
+  footer{
+    max-width:1180px; margin:0 auto; padding:0 32px 40px;
+    display:flex; justify-content:space-between; color:var(--ink-soft); font-size:12.5px;
+  }
+  footer a{ color:var(--ink-soft); text-decoration:none; margin-right:16px; font-weight:600; }
+  footer a:hover{ color:var(--red); }
 
-    /* ── TABLE PANEL ── */
-    .wc-panel {
-      background: var(--wc-white);
-      border: 1px solid var(--wc-border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .wc-panel-header { padding: 1.25rem 1.5rem 1rem; }
-    .wc-panel-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      /* color: var(--wc-text); */
-      color: #475e7b;
-      margin-bottom: .25rem;
-
-    }
-    .wc-panel-subtitle {
-      font-size: 16px;
-      color: #475E7B;
-    }
-    /* .wc-panel-subtitle strong { color: var(--wc-text); } */
-
-    .wc-panel-actions {
-      display: flex;
-      gap: .5rem;
-      align-items: center;
-      padding: 0 1.5rem .9rem;
-      flex-wrap: wrap;
-    }
-    /* .wc-action-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: .42rem 1rem;
-      border-radius: 16px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .15s;
-      border: 1.5px solid var(--wc-border);
-      background: var(--wc-white);
-      color: var(--wc-text);
-    } */
-
-  .wc-action-btn {
-      /* display: flex; */
-      align-items: center;
-      gap: 6px;
-      padding: .42rem 1rem;
-      border-radius: 16px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .15s;
-      border: 1.5px solid var(--wc-border);
-      background: var(--wc-white);
-      color: var(--wc-blue);
-      border-color: var(--wc-blue);
-      width: 180px;
-    }
-
-
-    .wc-action-btn:hover { border-color: var(--wc-blue); color: var(--wc-blue); background: #eff6ff; }
-
-    .wc-action-btn.primary {
-      background: var(--wc-blue);
-      color: #fff;
-      border-color: var(--wc-blue);
-    }
-    .wc-action-btn.primary:hover { background: #0f4fc7; border-color: #0f4fc7; color: #fff; }
-
-    /* TABLE */
-    .wc-table-wrap { overflow-x: auto; }
-    table.wc-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .wc-table thead tr {
-      background: #f8fafc;
-      border-top: 1px solid var(--wc-border);
-      border-bottom: 1px solid var(--wc-border);
-    }
-    .wc-table th {
-      padding: .6rem 1rem;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--wc-muted);
-      text-align: left;
-      white-space: nowrap;
-      letter-spacing: .02em;
-    }
-    .wc-table th.sortable { cursor: pointer; user-select: none; }
-    .wc-table th.sortable:hover { color: var(--wc-blue); }
-    .wc-table th .sort-icon { margin-left: 3px; opacity: .6; font-size: 10px; }
-
-    .wc-table td {
-      padding: .65rem 1rem;
-      font-size: 13px;
-      border-bottom: 1px solid var(--wc-border);
-      vertical-align: middle;
-    }
-    .wc-table tbody tr:hover { background: var(--wc-row-hover); }
-    .wc-table tbody tr:last-child td { border-bottom: none; }
-
-    .wc-table td a {
-      color: var(--wc-blue);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .wc-table td a:hover { text-decoration: underline; }
-
-    .wc-table input[type=checkbox] {
-      width: 15px;
-      height: 15px;
-      accent-color: var(--wc-blue);
-      cursor: pointer;
-    }
-
-    .wc-check-col { width: 40px; }
-    .wc-name-col { min-width: 140px; }
-
-    /* PAGINATION */
-    .wc-pagination {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .75rem 1.25rem;
-      border-top: 1px solid var(--wc-border);
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
-    .wc-page-info { font-size: 12.5px; color: var(--wc-muted); }
-    .wc-page-info span { font-weight: 600; color: var(--wc-text); }
-    .wc-rows-label { font-size: 12.5px; color: var(--wc-muted); }
-    .wc-page-nums {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-    .wc-page-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 16px;
-      border: 1px solid var(--wc-border);
-      background: var(--wc-white);
-      color: var(--wc-text);
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .15s;
-    }
-    .wc-page-btn:hover { border-color: var(--wc-blue); color: var(--wc-blue); background: #eff6ff; }
-    .wc-page-btn.active { background: var(--wc-blue); border-color: var(--wc-blue); color: #fff; }
-    .wc-page-btn:disabled { opacity: .35; cursor: default; }
-
-    /* ── FOOTER ── */
-    .wc-footer {
-      background: var(--wc-navy);
-      color: #fff;
-      font-size: 11.5px;
-      padding: 2rem 2rem 1.5rem;
-      margin-top: 2.5rem;
-    }
-    .wc-footer-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: rgba(255,255,255,.75);
-      margin-bottom: .5rem;
-    }
-    .wc-footer p { margin-bottom: .4rem; line-height: 1.6; }
-    .wc-footer hr { border-color: rgba(255,255,255,.12); margin: 1rem 0 .75rem; }
-
-    @media (max-width: 992px) {
-      .wc-summary { text-align: left; margin-top: 1rem; }
-      .wc-summary-cols { justify-content: flex-start; }
-    }
-
-    @media (max-width: 768px) {
-      .wc-main { grid-template-columns: 1fr; padding: 1rem; }
-      .wc-hero { padding: 1.5rem 1rem 1rem 1rem !important; }
-      .wc-footer { padding: 1.5rem 1rem; }
-    }
-
-    @media (max-width: 480px) {
-      .wc-hero { padding: 1.25rem .75rem .75rem .75rem !important; }
-      .wc-main { padding: .75rem; }
-      .wc-footer { padding: 1.25rem .75rem; }
-    }
-
-
-  </style>
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .persons{ grid-template-columns:1fr; }
+    .topnav .nav-links{ display:none; }
+  }
+</style>
 </head>
 <body>
 
-
-
-
-
-
-
-
-
-<!-- NAVBAR: full-width white strip, contents aligned to the hero card edges -->
-<nav style="background:#fff; border-bottom: 1px solid var(--wc-border); width:100%;">
-  <div style="width:100%; max-width:1200px; margin:0 auto; padding:0 1.5rem; height:56px; display:flex; align-items:center; justify-content:space-between; box-sizing:border-box;">
-    <div class="wc-logo">
-      <!-- <div class="wc-logo-badge"><img src="./img/ssc-logo.png"></div> -->
-      <!-- <div class="wc-logo-badge">SS<span style="opacity:.6">&</span>C</div> -->
-      <span class="wc-logo-text pt-2">ConnectIQ</span>
-    </div>
-    <div class="wc-user">
-      <div class="wc-avatar">P</div>
-      <span>Michael Palmer</span>
-      <!-- <i class="bi bi-chevron-down" style="font-size:11px; opacity:.6;"></i> -->
-    </div>
+<nav class="topnav">
+  <div class="brand">
+    <div class="brand-mark">H+</div>
+    <div class="brand-name">HSA<span>Plus</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#" class="active">Strategy Builder</a>
+    <a href="#">Education</a>
+    <a href="#">Glossary</a>
+  </div>
+  <div class="nav-right">
+    <div class="avatar">JD</div>
   </div>
 </nav>
 
-<!-- HERO -->
-<div style="width:100%; max-width:1200px; margin:0 auto; padding: 1.5rem 1.5rem 0 1.5rem; box-sizing:border-box;">
-<div class="wc-hero" style="border-top-left-radius: 12px; border-top-right-radius: 12px;">
-
-  <div class="row g-0">
-    <div class="col-lg-8 d-flex align-items-end">
-      <div class="wc-hero-welcome">Welcome, Mike!</div>
+<div class="welcome-strip">
+  <div class="welcome-card">
+    <div>
+      <h2>Welcome back, John</h2>
+      <p>You're building your strategy under the Master HSA Plan</p>
     </div>
-
-    <div class="col-lg-4">
-      <div class="wc-summary">
-        <div class="wc-summary-label">Book of Business Summary</div>
-        <div class="wc-summary-cols">
-          <div class="wc-summary-col">
-            <small>Plans</small>
-            <strong>245</strong>
-          </div>
-          <div class="wc-summary-col">
-            <small>Participants</small>
-            <strong>5,452</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row g-0 pt-4 pb-2">
-    <div class="col-lg-11">
-      <!-- search -->
-      <div class="wc-search-wrap mb-2">
-        <i class="bi wc-search-icon"><img src="./img/sparkle.svg" ></i>
-        <input type="text" class="wc-search" placeholder="&nbsp; Look for a specific participant by name and last 4 SSN"/>
-        <div class="wc-search-actions">
-          <button class="wc-search-btn"><img src="./img/Icon_send.png" ></button>
-        </div>
-      </div>
-      <!-- / search -->
-    </div>
-    <div class="col-lg-1">
-      <button class="wc-search-btn"><img src="./img/Icon-calendar.png" style="padding: 10px 0 0 30px;" ></button>
-    </div>
-  </div>
-
-  <div class="row g-0">
-    <div class="col-12">
-      <a class="wc-manage-link" >Manage your emails</a>
-    </div>
+    <div class="plan-chip">MASTER HSA PLAN</div>
   </div>
 </div>
 
-</div>
-<!-- / hero -->
+<div class="layout">
 
-<!-- DROPDOWN POSITIONER — flush with hero card edges -->
-<!-- <div class="wc-dropdown-positioner">
-  <div class="wc-dropdown" id="manageEmailsDropdown">
-    <div class="wc-dropdown-intro">Here's some ideas on what I can help you with:</div>
-    <div class="row g-0">
-      <div class="col-12 col-md-4 wc-dropdown-col pe-4">
-        <div class="wc-dropdown-col-title">Access a tool – take me to the:</div>
-        <a href="#" class="wc-dropdown-link">Retirement Savings Planner</a>
-        <a href="#" class="wc-dropdown-link">Retirement Distribution Planner</a>
-        <a href="#" class="wc-dropdown-link">Contribution Maximizer</a>
-        <a href="#" class="wc-dropdown-link">Social Security Illustrator</a>
-        <a href="#" class="wc-dropdown-link">Long-Term Health Care Planning</a>
-        <a href="#" class="wc-dropdown-link">Health Savings Account Optimizer</a>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Strategy Builder</div>
+
+    <div class="progress-ring-wrap">
+      <div class="progress-ring">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#241B45"/>
+              <stop offset="100%" stop-color="#CF1F39"/>
+            </linearGradient>
+          </defs>
+          <circle class="track" cx="28" cy="28" r="24"/>
+          <circle class="fill" cx="28" cy="28" r="24" stroke-dasharray="151" stroke-dashoffset="121"/>
+        </svg>
+        <div class="pct">1/5</div>
       </div>
-      <div class="col-12 col-md-4 wc-dropdown-col pe-4">
-        <div class="wc-dropdown-col-title">Show me a report that tells me:</div>
-        <a href="#" class="wc-dropdown-link">How my participants compare on average deferral rates</a>
-        <a href="#" class="wc-dropdown-link">How my participants compare on account balances</a>
-        <a href="#" class="wc-dropdown-link">Types of discussions I've had with my participants</a>
-        <a href="#" class="wc-dropdown-link">Results for one of my email campaigns</a>
-      </div>
-      <div class="col-12 col-md-4 wc-dropdown-col">
-        <div class="wc-dropdown-col-title">Help me with an email:</div>
-        <a href="#" class="wc-dropdown-link">Start with a pre-crafted email</a>
-        <a href="#" class="wc-dropdown-link">Create a new email</a>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- MAIN -->
-<div class="wc-main">
-
-
-  <!-- SIDEBAR -->
-  <aside class="wc-sidebar">
-
-    <div class="wc-panel-title">Analyze participants and show me:</div>
-
-    <!-- Analyze Card -->
-
-
-
-    <!-- <div class="wc-card"> -->
-      <div class="d-flex flex-column gap-3">
-
-        <div class="wc-analyze-item active">
-          <div class="wc-analyze-icon"><i class="bi"><img src="./img/sparkle.png" ></i></div>
-          <span class="wc-analyze-label">Participants at risk of rolling their funds out</span>
-        </div>
-
-        <div class="wc-analyze-item">
-          <!-- <div class="wc-analyze-icon"><i class="bi bi-piggy-bank"></i></div> -->
-          <div class="wc-analyze-icon"><i class="bi"><img src="./img/sparkle.png" ></i></div>
-          <span class="wc-analyze-label">Participants who could be contributing more</span>
-          <button class="wc-show-btn">Show</button>
-        </div>
-
-        <div class="wc-analyze-item">
-          <div class="wc-analyze-icon"><i class="bi"><img src="./img/sparkle.png" ></i></div>
-          <span class="wc-analyze-label">Participants who may be interested in wealth management</span>
-          <button class="wc-show-btn">Show</button>
-        </div>
-
-        <div class="wc-analyze-item">
-          <div class="wc-analyze-icon"><i class="bi"><img src="./img/sparkle.png" ></i></div>
-          <span class="wc-analyze-label">Participants who are nearing retirement</span>
-          <button class="wc-show-btn">Show</button>
-        </div>
-      </div>
-    <!-- </div> -->
-
-    <!-- Status Change -->
-    <div class="wc-card">
-      <div class="wc-section-title">Status Change</div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Eligible to active</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Active to termed</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Eligible and has not enrolled</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-
-      <div class="wc-section-title mt-3">Balance Information</div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Zero balance</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Not contributing</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Over $500,000</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-
-      <div class="wc-section-title mt-3">Improve Outcomes</div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">No beneficiary on file</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Not meeting company match</span>
-        <button class="wc-show-btn">Show</button>
-      </div>
-      <div class="wc-filter-item">
-        <span class="wc-filter-label">Active loans</span>
-        <button class="wc-show-btn">Show</button>
+      <div class="progress-label">
+        <b>Getting started</b>
+        <span>Step 1 of 5</span>
       </div>
     </div>
 
+    <div class="steps">
+      <div class="step active"><div class="num">1</div> Personal Information</div>
+      <div class="step"><div class="num">2</div> Current Accounts</div>
+      <div class="step"><div class="num">3</div> Current Medical Expenses</div>
+      <div class="step"><div class="num">4</div> Goals &amp; Assumptions</div>
+      <div class="step"><div class="num">5</div> Action Plan</div>
+    </div>
   </aside>
 
-  <!-- TABLE PANEL -->
-  <main>
-    <div class="wc-panel">
-      <div class="wc-panel-header">
-        <div class="wc-panel-title">Participants at risk of rolling their funds out</div>
-        <div class="wc-panel-subtitle">
-          <strong>30 participants</strong> are in terminated status and have balances at risk of being rolled out.
+  <!-- Main -->
+  <main class="main-card">
+    <h1>Personal information</h1>
+    <p class="lead">Building a comprehensive HSA investment plan begins with an understanding of your current financial situation and goals. Take a moment to fill in your information below.</p>
 
-          <!-- Info icon with tooltip -->
-          <div class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="This search used predictive analytics to determine who to elevate. Predictive analytics looks at “like” individuals who have done an action in the past, to identify who may be at risk to take the same action in the future.">
-            <i class="bi bi-info-circle-fill text-primary" style="font-size: 1rem;"></i>
+    <div class="persons">
+
+      <!-- Participant -->
+      <div class="person-card">
+        <div class="person-head"><span class="person-dot p1"></span><h3>Participant</h3></div>
+
+        <div class="group-label">Current</div>
+        <div class="field">
+          <label>Name</label>
+          <input type="text" value="John Doe">
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select><option>Male</option><option>Female</option></select>
+        </div>
+        <div class="field">
+          <label>Birth date (mm/dd/yyyy)</label>
+          <input type="text" value="05/20/1990">
+        </div>
+        <div class="field">
+          <label>HDHP coverage type</label>
+          <div class="input-row">
+            <select style="flex:1"><option>Family</option><option>Individual</option></select>
+            <div class="info-dot">i</div>
           </div>
+        </div>
 
+        <div class="group-label">Future</div>
+        <div class="field">
+          <label>Planned retirement age</label>
+          <div class="input-row">
+            <input type="text" value="65" style="flex:1">
+            <div class="info-dot">i</div>
+          </div>
         </div>
       </div>
 
-      <div class="wc-panel-actions">
-        <button class="wc-action-btn text-center"><i class="bi bi-download"></i> Download Data</button>
-        <button class="wc-action-btn"><i class="bi bi-envelope"></i> Send an Email</button>
-        <button class="wc-action-btn primary"><i class="bi bi-sliders2"></i> Filter</button>
+      <!-- Spouse -->
+      <div class="person-card">
+        <div class="person-head"><span class="person-dot p2"></span><h3>Spouse</h3></div>
+
+        <div class="group-label">Current</div>
+        <div class="field">
+          <label>Name</label>
+          <input type="text" value="Josephine">
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select><option>Female</option><option>Male</option></select>
+        </div>
+        <div class="field">
+          <label>Birth date (mm/dd/yyyy)</label>
+          <input type="text" value="05/20/1990">
+        </div>
+
+        <div class="group-label">Future</div>
+        <div class="field">
+          <label>Planned retirement age</label>
+          <div class="input-row">
+            <input type="text" value="65" style="flex:1">
+            <div class="info-dot">i</div>
+          </div>
+        </div>
+
+        <div class="remove-link">✕ Remove spouse information</div>
       </div>
 
-      <div class="wc-table-wrap">
-        <table class="wc-table">
-          <thead>
-            <tr>
-              <th class="wc-check-col">
-                <input type="checkbox" id="selectAll" title="Select all"/>
-              </th>
-              <th class="wc-name-col sortable">Name <i class="bi bi-arrow-down-up sort-icon"></i></th>
-              <th class="sortable">Termination Date <i class="bi bi-arrow-down-up sort-icon"></i></th>
-              <th class="sortable">Balance <i class="bi bi-arrow-down-up sort-icon"></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Lori Smith</a></td><td>November 3, 2025</td><td>$89,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Charlie Brown</a></td><td>November 15, 2025</td><td>$120,300.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Diana Prince</a></td><td>November 22, 2025</td><td>$95,600.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Edward Elric</a></td><td>November 8, 2025</td><td>$150,000.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Fiona Gallagher</a></td><td>November 29, 2025</td><td>$77,250.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">George Harrison</a></td><td>November 5, 2025</td><td>$110,400.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Hannah Arendt</a></td><td>November 12, 2025</td><td>$98,900.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Isaac Asimov</a></td><td>November 19, 2025</td><td>$130,500.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Jessica Jones</a></td><td>November 27, 2025</td><td>$85,300.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-            <tr><td><input type="checkbox"/></td><td><a href="#">Kevin Hart</a></td><td>November 30, 2025</td><td>$115,750.00</td></tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
 
-      <div class="wc-pagination">
-        <div class="wc-page-info">Showing <span>1 – 15</span> of <span>30</span></div>
-        <div class="d-flex align-items-center gap-2">
-          <span class="wc-rows-label">Rows per page</span>
-          <select class="form-select form-select-sm" style="width:60px; font-size:12px;">
-            <option>15</option>
-            <option>30</option>
-            <option>50</option>
-          </select>
-        </div>
-        <div class="wc-page-nums">
-          <button class="wc-page-btn" disabled><i class="bi bi-chevron-left" style="font-size:11px;"></i></button>
-          <button class="wc-page-btn active">1</button>
-          <button class="wc-page-btn">2</button>
-          <button class="wc-page-btn">3</button>
-          <button class="wc-page-btn"><i class="bi bi-chevron-right" style="font-size:11px;"></i></button>
-        </div>
-      </div>
+    <hr class="divider-line">
+
+    <div class="actions">
+      <button class="btn btn-ghost">← Back</button>
+      <button class="btn btn-primary">Next →</button>
     </div>
   </main>
+</div>
 
-</div><!-- /wc-main -->
-
-<!-- FOOTER -->
-<footer class="wc-footer">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div class="wc-footer-title">Disclaimer</div>
-    <p>This material is intended for information purposes only, and is not to be relied upon as a forecast, research or tax, accounting, regulatory or investment advice. This material does not constitute a recommendation, endorsement, referral or offer to sell or solicitation of an offer to buy or adopt an investment or other strategy. Readers should refer to their legal or financial advisers for review of the information contained herein.</p>
-    <p>The enclosed material may contain sensitive, proprietary and confidential information. Please use every effort to safeguard the confidentiality of such material. SS&amp;C does not warrant the accuracy nor completeness of this material. SS&amp;C shall under no circumstances be liable for any damages arising out of or in connection with the reliance on the information contained herein. Readers should make their own assessment in light of the laws and regulations applicable to it. This material is not for redistribution.</p>
-    <hr/>
-    <p>Our trademarks and service marks and those of third party entities used in this material are the property of SS&amp;C and their respective owners.</p>
-    <p>© 2026 SS&amp;C</p>
-  </div>
+<footer>
+  <div><a href="#">Privacy and Security</a></div>
+  <div>© 2026 SS&amp;C. All rights reserved.</div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Select all checkbox
-  document.getElementById('selectAll').addEventListener('change', function () {
-    document.querySelectorAll('tbody input[type=checkbox]').forEach(cb => cb.checked = this.checked);
-  });
-
-  // Pagination page buttons
-  document.querySelectorAll('.wc-page-btn:not([disabled])').forEach(btn => {
-    btn.addEventListener('click', function () {
-      if (this.querySelector('i')) return; // skip arrow buttons
-      document.querySelectorAll('.wc-page-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Analyze item selection
-  document.querySelectorAll('.wc-analyze-item').forEach(item => {
-    item.addEventListener('click', function () {
-      document.querySelectorAll('.wc-analyze-item').forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-
-</script>
-
-<script>
-  // Initialize tooltips
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script>
-
 
 </body>
 </html>
